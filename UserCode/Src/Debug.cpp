@@ -15,7 +15,7 @@ Debug& Debug::getInstance() {
 	static Debug debuger;
 	return debuger;
 }
-
+#ifdef ENABLE_DEBUG
 Debug& Debug::operator <<(int num) {
 	char tmpStr[20];
 	sprintf(tmpStr, " %d", num);
@@ -47,6 +47,19 @@ Debug::Debug():debugPort(DBG_HANDLER_PTR) {
 	debugPort.open();
 }
 
+#else
+Debug& Debug::operator <<(int num) {
+	return *this;
+}
+
+Debug& Debug::operator <<(const char* str) {
+	return *this;
+}
+
+void Debug::log(const char* fmt...) {}
+
+Debug::Debug(){}
+#endif
 Debug::~Debug() {
 	// TODO Auto-generated destructor stub
 }

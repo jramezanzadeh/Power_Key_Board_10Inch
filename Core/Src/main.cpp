@@ -31,6 +31,8 @@
 #include "UsbKeyboard.h"
 #include "ButtonPoller.h"
 #include "MkdPowerController.h"
+#include "VariableContrastLed.h"
+#include "PowerStateMonitor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,6 +53,7 @@
 
 /* USER CODE BEGIN PV */
 extern USBD_HandleTypeDef hUsbDeviceFS;
+extern TIM_HandleTypeDef htim4;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,6 +103,17 @@ int main(void)
   /* USER CODE BEGIN 2 */
   ButtonPoller buttonPoller;
   keyboard.init(&hUsbDeviceFS);
+
+  /* Base Board power Controller*/
+  GpioHandler mkdPwrCtrlPin(BB_PWR_CTRL_GPIO_Port, BB_PWR_CTRL_Pin);
+  GpioHandler mkdResetPin(BB_RST_GPIO_Port, BB_RST_Pin);
+  GpioHandler mkdOnOffPin(BB_ON_OFF_GPIO_Port, BB_ON_OFF_Pin);
+  VariableContrastLed pwrLed(&htim4, TIM_CHANNEL_2);
+  MkdPowerController mkdpwrCtrl(&mkdPwrCtrlPin, &mkdResetPin, &mkdOnOffPin, &pwrLed);
+  PowerStateMonitor pwrStateMonitor;
+  pwrStateMonitor.addObserver(mkdpwrCtrl);
+  keyboard.addObserver(mkdpwrCtrl);
+  VariableContrastLed backlightLeds(&htim4, TIM_CHANNEL_3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -115,6 +129,8 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  keyboard.run();
 	  buttonPoller.run();
+	  mkdpwrCtrl.run();
+	  pwrStateMonitor.run();
   }
   /* USER CODE END 3 */
 }

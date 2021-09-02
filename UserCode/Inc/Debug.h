@@ -10,6 +10,8 @@
 
 #include "Serial.hpp"
 
+//#define ENABLE_DEBUG
+
 #define DBG_PORT_NUM 2
 
 #define _HANDLER_PTR_(n)		&huart##n
@@ -32,7 +34,9 @@ public:
 	void log(const char *fmt...);
 private:
 	Debug();
+#ifdef ENABLE_DEBUG
 	Serial debugPort;
+#endif
 };
 
 #endif /* DEBUG_H_ */

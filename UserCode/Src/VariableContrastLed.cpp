@@ -32,14 +32,14 @@ uint16_t VariableContrastLed::getContrast() const {
 }
 
 void VariableContrastLed::setContrast(uint16_t contrast) {
-	mContrast = contrast;
+
+	mContrast = (contrast > mTimer->Init.Period)?mTimer->Init.Period:contrast;
 	setPulseWidth();
 }
 
 void VariableContrastLed::setContrastPercentage(uint8_t percentage) {
 	if(percentage > 100) percentage = 100;
-	percentage /= 10;
-	mContrast = 63*(pow(2, percentage) - 1);
+	mContrast = percentage*(mTimer->Init.Period)/100;
 	setPulseWidth();
 }
 

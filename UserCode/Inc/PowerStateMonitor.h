@@ -12,10 +12,12 @@
 #include "StateObserver.h"
 #include "GpioHandler.h"
 
+//#define INPUT_POWER_IS_MONITORED
+//#define ENABLE_POWER_STATE_CHANGE_ALARM
+
 class PowerStateMonitor: public Observable<StateObserver> {
 public:
-	PowerStateMonitor(GpioHandler *plugInPin,
-			GpioHandler* mode0, GpioHandler* mode1);
+	PowerStateMonitor();
 	virtual ~PowerStateMonitor();
 
 	void run();
@@ -26,14 +28,18 @@ public:
 
 
 private:
-	GpioHandler* 			mPlugInPin;
-	GpioHandler* 			mMode0;
-	GpioHandler* 			mMode1;
+#ifdef INPUT_POWER_IS_MONITORED
+	GpioHandler 			mPlugInPin;
+	GpioHandler 			mMode0;
+	GpioHandler 			mMode1;
 	bool 					lastPinValue;
+#endif
 	PowerState powerState;
 
 	void notify();
 	void updatePowerState();
+	bool inputPowerStateChanged();
+	bool battryStateChanged();
 
 };
 
