@@ -84,6 +84,7 @@ void Error_Handler(void);
 #define PU_DEV2_IO2_GPIO_Port GPIOC
 #define ENCODER_A_Pin GPIO_PIN_0
 #define ENCODER_A_GPIO_Port GPIOB
+#define ENCODER_A_EXTI_IRQn EXTI0_IRQn
 #define ENCODER_B_Pin GPIO_PIN_1
 #define ENCODER_B_GPIO_Port GPIOB
 #define KEY8_Pin GPIO_PIN_7
@@ -142,6 +143,7 @@ void Error_Handler(void);
 #define KEY24_GPIO_Port GPIOD
 #define ENCODER_PRESS_Pin GPIO_PIN_3
 #define ENCODER_PRESS_GPIO_Port GPIOB
+#define ENCODER_PRESS_EXTI_IRQn EXTI3_IRQn
 #define BUZZER_Pin GPIO_PIN_6
 #define BUZZER_GPIO_Port GPIOB
 #define PWR_LED_Pin GPIO_PIN_7

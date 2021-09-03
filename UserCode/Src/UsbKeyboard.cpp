@@ -98,7 +98,7 @@ void UsbKeyboard::init(USBD_HandleTypeDef* usbDevice) {
 	if(!usbDevice)
 		return;
 	mUsbDevice = usbDevice;
-	mPollingInterval = USBD_HID_GetPollingInterval(mUsbDevice);
+	mPollingInterval = USBD_HID_GetPollingInterval(mUsbDevice) + 7; // increase polling time for encoder problem
 
 }
 
@@ -151,7 +151,7 @@ void UsbKeyboard::handleBufferedKey() {
 	switch (mEventList[mReadIndex].type) {
 	case KEY_PRESSED:
 		sendStandardKey(0, mKeysMap[mEventList[mReadIndex].keyId]);
-		Debug::getInstance().log("press key[%d]\r\n", mEventList[mReadIndex].keyId);
+		Debug::getInstance().log("press key[%d] \r\n", mEventList[mReadIndex].keyId);
 		break;
 	case KEY_RELEASED:
 		releaseStandardKey();

@@ -19,26 +19,6 @@ AisPowerController::~AisPowerController() {
 }
 
 void AisPowerController::stateChanged(PowerState state) {
-	Debug::getInstance() << "AisPowerController handle satate change -->" << state << "\r\n";
-	switch (state) {
-	case POWER_DOWN:
-		//Actually this state never happen
-		mInputPwrCtrlPin->setLow();
-		mAis3V8PwrCtrlPin->setLow();
-		break;
-	case POWER_ON_BATT: //only battery is present.
-		mInputPwrCtrlPin->setLow();
-		mAis3V8PwrCtrlPin->setHigh();
-		break;
-	case POWER_ON_INPUT: // input power is present
-	case POWER_ON_BOTH:
-		mInputPwrCtrlPin->setHigh();
-		mAis3V8PwrCtrlPin->setLow();
-		break;
-	default:
-		mInputPwrCtrlPin->setLow();
-		mAis3V8PwrCtrlPin->setLow();
-		break;
-	}
+	//TODO: implement when battery is in action
 }
 

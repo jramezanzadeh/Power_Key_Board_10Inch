@@ -13,14 +13,14 @@
 
 class AisPowerController: public StateObserver {
 public:
-	AisPowerController(GpioHandler* inputPwrCtrlPin,
-			GpioHandler* ais3V8PwrCtrlPin);
+	AisPowerController();
 	virtual ~AisPowerController();
 
 	void stateChanged(PowerState state);
+	void powerUp();
+	void powerDown();
 private:
-	GpioHandler* mInputPwrCtrlPin;
-	GpioHandler* mAis3V8PwrCtrlPin;
+	GpioHandler mPwrCtrlPin;
 
 };
 

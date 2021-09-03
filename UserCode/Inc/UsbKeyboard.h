@@ -14,7 +14,7 @@
 #include "Observable.h"
 #include "KeyObserver.h"
 
-#define BUFF_SIZE 5
+#define BUFF_SIZE 10
 #define keyboard UsbKeyboard::instance()
 
 class UsbKeyboard: public Observable<KeyObserver> {

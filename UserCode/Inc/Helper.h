@@ -18,6 +18,7 @@ public:
 	static void toBigEndianArray(uint8_t *buff, uint32_t val);
 	static void toBigEndianArray(uint8_t *buff, uint16_t val);
 	static uint32_t fromBigEndianArray(uint8_t *buff, int len);
+	static uint8_t calcCRC(uint8_t *buff, int len);
 };
 
 #endif /* HELPER_H_ */

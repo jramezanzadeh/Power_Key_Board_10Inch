@@ -10,7 +10,7 @@
 
 #include "Serial.hpp"
 
-//#define ENABLE_DEBUG
+#define ENABLE_DEBUG
 
 #define DBG_PORT_NUM 2
 
@@ -23,7 +23,8 @@
 #define DBG_HANDLER_PTR			(HANDLER_PTR_(DBG_PORT_NUM))
 #define DBG_UART_PTR			(UART_PTR_(DBG_PORT_NUM))
 
-
+#define debuger Debug::getInstance()
+#define endl "\r\n"
 class Debug {
 public:
 	static Debug& getInstance();
