@@ -43,8 +43,8 @@ void Debug::log(const char* fmt...) {
 
 Debug::Debug():debugPort(DBG_HANDLER_PTR) {
 	// TODO Auto-generated constructor stub
-//	debugPort.init(DBG_UART_PTR, 115200, UART_MODE_TX);
-//	debugPort.open();
+	debugPort.init(DBG_UART_PTR, 115200, UART_MODE_TX);
+	debugPort.open();
 }
 
 #else

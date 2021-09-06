@@ -9,6 +9,8 @@
 #define COMMANDLISTENER_H_
 
 #include "Serial.hpp"
+#include "VariableContrastLed.h"
+#include "AisPowerController.h"
 
 #define TX_BUFF_LEN		50
 #define MAX_PAYLOAD_LEN	10
@@ -40,11 +42,11 @@ private:
 namespace CmdListenerNS{
 class State;
 }
-class VariableContrastLed;
+
 class CommandListener {
 public:
 
-	CommandListener(VariableContrastLed *bgLedCtrl);
+	CommandListener();
 	virtual ~CommandListener();
 
 	void init();
@@ -52,6 +54,9 @@ public:
 	void setState(CmdListenerNS::State *state);
 	void writeByte(uint8_t byte);
 	void setBgLedBrightness(uint8_t brightnessPercentage);
+	void powerDownAIS();
+	void powerUpAIS();
+	bool getAisPowerState();
 
 	Command& getCurrentCmd(){
 		return mCmd;
@@ -66,7 +71,8 @@ private:
 	Command mCmd;
 	CmdListenerNS::State *mCurrentState;
 
-	VariableContrastLed *mBgLedCtrl;
+	VariableContrastLed mBgLedCtrl;
+	AisPowerController  mAisPwrCtrl;
 
 };
 

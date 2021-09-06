@@ -27,6 +27,10 @@ private:
 		BUZZER_PULSE,
 		BUZZER_BLINK,
 		BG_BRIGHTNESS,
+		AIS_PWR_CTRL,
+		GET_AIS_PWR_STATE,
+		GET_AIS_PWR_STATE_RESP,
+
 	};
 	int readIndex;
 	uint8_t buff[2];
@@ -40,6 +44,8 @@ private:
 	void cmdBuzzerPulse();
 	void cmdBuzzerBlink();
 	void cmdBgLedBrightness();
+	void cmdAisPowerControl();
+	void cmdGetAisPowerState();
 };
 
 } /* namespace CmdListenerNS */

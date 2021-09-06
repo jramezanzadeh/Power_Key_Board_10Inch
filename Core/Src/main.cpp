@@ -115,9 +115,8 @@ int main(void)
 	PowerStateMonitor pwrStateMonitor;
 	pwrStateMonitor.addObserver(mkdpwrCtrl);
 	keyboard.addObserver(mkdpwrCtrl);
-	VariableContrastLed backlightLeds(&htim4, TIM_CHANNEL_3);
 
-	CommandListener cmdlistener(&backlightLeds);
+	CommandListener cmdlistener;
 	cmdlistener.init();
 	/* USER CODE END 2 */
 

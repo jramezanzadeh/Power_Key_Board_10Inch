@@ -19,20 +19,20 @@ UsbKeyboard::UsbKeyboard() {
 
 
 	mKeysMap[Key_AIS] 			= USB_HID_KEY_F1; 		// AIS/F1
-	mKeysMap[Key_Num1] 			= USB_HID_KEYPAD_1;		// 1
-	mKeysMap[Key_Num2] 			= USB_HID_KEYPAD_2;		// 2
+	mKeysMap[Key_Num1] 			= USB_HID_KEY_1;		// 1
+	mKeysMap[Key_Num2] 			= USB_HID_KEY_2;		// 2
 	mKeysMap[Key_Num3] 			= USB_HID_KEY_3;		// 3
 	mKeysMap[Key_VHF] 			= USB_HID_KEY_F2; 		// VHF F2
-	mKeysMap[Key_Num4] 			= USB_HID_KEYPAD_4;		// 4
-	mKeysMap[Key_Num5] 			= USB_HID_KEYPAD_5;		// 5
-	mKeysMap[Key_Num6] 			= USB_HID_KEYPAD_6;		// 6
+	mKeysMap[Key_Num4] 			= USB_HID_KEY_4;		// 4
+	mKeysMap[Key_Num5] 			= USB_HID_KEY_5;		// 5
+	mKeysMap[Key_Num6] 			= USB_HID_KEY_6;		// 6
 	mKeysMap[Key_SNR] 			= USB_HID_KEY_F3;		// SNR F3
-	mKeysMap[Key_Num7] 			= USB_HID_KEYPAD_7;		// 7
-	mKeysMap[Key_Num8] 			= USB_HID_KEYPAD_8; 	// 8
-	mKeysMap[Key_Num9] 			= USB_HID_KEYPAD_9; 	// 9
+	mKeysMap[Key_Num7] 			= USB_HID_KEY_7;		// 7
+	mKeysMap[Key_Num8] 			= USB_HID_KEY_8; 		// 8
+	mKeysMap[Key_Num9] 			= USB_HID_KEY_9; 		// 9
 	mKeysMap[Key_ESP] 			= USB_HID_KEY_F4;		// ESP
-	mKeysMap[Key_NumDot] 		= USB_HID_KEYPAD_PERIOD;// dot(.)
-	mKeysMap[Key_Num0] 			= USB_HID_KEYPAD_0;		// 0
+	mKeysMap[Key_NumDot] 		= USB_HID_KEY_PERIOD;	// dot(.)
+	mKeysMap[Key_Num0] 			= USB_HID_KEY_0;		// 0
 	mKeysMap[Key_NumBackSpace] 	= USB_HID_KEY_BACKSPACE;// BackSpace
 	mKeysMap[Key_In] 			= USB_HID_KEYPAD_PLUS;	// In +
 	mKeysMap[Key_Menu] 			= USB_HID_KEY_F8;		// Menu

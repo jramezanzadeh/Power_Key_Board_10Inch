@@ -10,7 +10,7 @@
 
 #include "Serial.hpp"
 
-#define ENABLE_DEBUG
+//#define ENABLE_DEBUG
 
 #define DBG_PORT_NUM 2
 

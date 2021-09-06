@@ -82,6 +82,12 @@ void GetFooter::processCommand() {
 	case BG_BRIGHTNESS:
 		cmdBgLedBrightness();
 		break;
+	case AIS_PWR_CTRL:
+		cmdAisPowerControl();
+		break;
+	case GET_AIS_PWR_STATE:
+		cmdGetAisPowerState();
+		break;
 	default:
 		sendNack();
 		break;
@@ -126,6 +132,28 @@ void GetFooter::cmdBgLedBrightness() {
 	uint8_t brightness = mCtx->getCurrentCmd().paylaod[0];
 	mCtx->setBgLedBrightness(brightness);
 	sendAck();
+}
+
+void GetFooter::cmdAisPowerControl() {
+	if(mCtx->getCurrentCmd().header.len != 1){
+		sendNack();
+		return;
+	}
+	bool UpOrDown = mCtx->getCurrentCmd().paylaod[0];
+	if(UpOrDown)
+		mCtx->powerUpAIS();
+	else
+		mCtx->powerDownAIS();
+	sendAck();
+}
+
+void GetFooter::cmdGetAisPowerState() {
+	Command resp;
+	resp.header.cmd = GET_AIS_PWR_STATE_RESP;
+	resp.header.len = 1;
+	resp.paylaod[0] = mCtx->getAisPowerState();
+	resp.updateCRC();
+	sendCommand(resp);
 }
 
 } /* namespace CmdListenerNS */

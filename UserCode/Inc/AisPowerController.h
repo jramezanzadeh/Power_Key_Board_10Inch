@@ -17,8 +17,9 @@ public:
 	virtual ~AisPowerController();
 
 	void stateChanged(PowerState state);
-	void powerUp();
-	void powerDown();
+	void powerUpAIS();
+	void powerDownAIS();
+	bool getPowerState();
 private:
 	GpioHandler mPwrCtrlPin;
 

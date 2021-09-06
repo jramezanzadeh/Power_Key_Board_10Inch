@@ -8,10 +8,9 @@
 #include "AisPowerController.h"
 #include "Debug.h"
 
-AisPowerController::AisPowerController(GpioHandler* inputPwrCtrlPin,
-		GpioHandler* ais3V8PwrCtrlPin) {
-	mInputPwrCtrlPin = inputPwrCtrlPin;
-	mAis3V8PwrCtrlPin = ais3V8PwrCtrlPin;
+AisPowerController::AisPowerController():
+mPwrCtrlPin(PU_DEV2_PWR_CTRL_GPIO_Port, PU_DEV2_PWR_CTRL_Pin) {
+	powerDownAIS();
 }
 
 AisPowerController::~AisPowerController() {
@@ -22,3 +21,14 @@ void AisPowerController::stateChanged(PowerState state) {
 	//TODO: implement when battery is in action
 }
 
+void AisPowerController::powerUpAIS() {
+	mPwrCtrlPin.setHigh();
+}
+
+void AisPowerController::powerDownAIS() {
+	mPwrCtrlPin.setLow();
+}
+
+bool AisPowerController::getPowerState() {
+	return mPwrCtrlPin.read();
+}
